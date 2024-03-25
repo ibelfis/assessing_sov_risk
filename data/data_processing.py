@@ -13,7 +13,7 @@ selected_countries_indicators = selected_countries_indicators.drop(['Country Nam
 
 selected_countries_indicators = selected_countries_indicators.drop(selected_countries_indicators.columns[-1], axis=1)
 
+df_melted = pd.melt(selected_countries_indicators, id_vars=['Country Code',"Indicator Code"], var_name='Date', value_name="Value")
 
-df2 = pd.melt(selected_countries_indicators, id_vars=['Country Code',"Indicator Code"], var_name='Date', value_name="Value")
+contries_date_indic = df_melted.pivot(index=['Country Code', 'Date'], columns='Indicator Code', values='Value').reset_index()
 
-print(df2)
